@@ -1,0 +1,103 @@
+.veri__ticker {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 12px;
+
+    font-family: $text-sans;
+    font-size: 14px;
+    line-height: 24px;
+    color: #333;
+
+    .veri__relative-date {
+        color: #767676;
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    @include mq($until: desktop) {
+        // font-size: 12px;
+        .veri__relative-date {
+            display: none;
+        }
+    }
+
+}
+.veri__ticker li[constituency-link] {
+    border-radius: 4px;
+    transition: all 250ms;
+    border: 1px solid transparent;
+    padding-left: 2px;
+    &:hover {
+        background-color: #f1f1f1;
+        transition: none;
+    }
+    cursor: pointer;
+}
+
+.veri__ticker-msg {
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.veri__latest-results {
+    height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 12px 0;
+    font-size: 12px;
+    font-family: $text-sans;
+    font-weight: bold;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: inline;
+        padding-left: 5px;
+        line-height: 20px;
+        white-space:: normal;
+        font-weight: normal;
+    }
+    li {
+        display: inline-block;
+    }
+
+    input {
+        display: none;
+    }
+    label {
+        cursor: pointer;
+
+        @include button();
+
+        @include button-height(20px);
+        font-size: 12px;
+
+        text-transform: capitalize;
+        color: #767676;
+        padding: 0 4px;
+
+        &:hover {
+            color: #333;
+        }
+    }
+    input:checked + label {
+        background-color: #005689;
+        border-color: #005689;
+        color: #fff;
+    }
+    li:first-child label {
+        margin-left: 4px;
+    }
+
+}
+
+.veri__empty-ticker {
+    font-family: $text-sans;
+    color: #767676;
+    padding-bottom: 24px;
+    font-size: 14px;
+}

@@ -1,0 +1,477 @@
+$seatstack-bp: tablet !default;
+$seatstack-height: 60px !default;
+$seatstack-2PP-height: 160px !default;
+$seatstack-2PP-bar-height: 60px;
+$seatstack-height-small: 37px;
+$seatstack-top: 30px !default;
+
+$text-sans:  "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+$egyptian: "Guardian Titlepiece";
+$agate: "arial";
+
+#seatstack, #senatestack {
+    width: 100%;
+    padding: 0 20px 0px;
+    box-sizing: border-box;
+}
+.seatstack {
+    position: relative;
+    clear: both;
+    font-family: $text-sans;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.seatstack-2PP {
+    .seatstack__majority {
+        height: $seatstack-2PP-height;
+        right: 0;
+        top: -35px;
+        width: 80%;
+        &:after {
+            top: 35px;
+            height: $seatstack-2PP-height + 20;
+        }
+    }
+}
+
+.seatstack__summary {
+    margin-top: 35px;
+    position: relative;
+}
+
+.seatstack__detail {
+    clear: both;
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+}
+
+.seatstack__majority {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    height: 40px;
+    line-height: 40px;
+    top: $seatstack-height;
+    font-size: 16px;
+    color: #767676;
+    font-style: italic;
+    &:after {
+        content: '';
+        border-left: 3px dotted #767676;
+        position: absolute;
+        height: $seatstack-height + 10;
+        left: 50%;
+        top: -$seatstack-height;
+        z-index: 1;
+    }
+
+    @include mq($seatstack-bp) {
+        top: $seatstack-height
+    }
+
+}
+
+.seatstack__totals {
+    position: absolute;
+    font-size: 16px;
+    line-height: 24px;
+    display: none;
+    right: 20px;
+    top: -30px;
+    @include mq($seatstack-bp) {
+        display: block;
+    }
+}
+
+.seatstack__results {
+    display: none;
+    position: absolute;
+    top: $seatstack-height-small + $seatstack-top;
+    line-height: 24px;
+    font-size: 12px;
+    @include mq($seatstack-bp) {
+        top: $seatstack-height + $seatstack-top;
+    }
+    right: 0;
+}
+
+.seatstack__bar {
+    padding: 0;
+    list-style-type: none;
+    margin-bottom: 24px;
+    background-color: #ddd;
+    height: $seatstack-height;
+
+    &.seatstack__two-party {
+        background: none;
+        margin: 0;
+
+        height: $seatstack-2PP-height;
+
+        li {
+            float: none;
+            height: 50%;
+            margin-bottom: 20px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            clear: both;
+        }
+
+        li:nth-child(2){
+            font-size: 18px;
+        }
+
+        li:first-child{
+        }
+
+
+        .seatstack-party-bar {
+            height: $seatstack-2PP-bar-height;
+            width: 80%;
+
+            background-color: #eaeaea;
+            margin: 10px 0;
+            display: block;
+            float: left;
+            .seatstack-party-bar-inner {
+                height: 100%;
+                display: block;
+                float: left;
+            }
+        }
+
+        .seatstack-party-seats {
+            top: 50%;
+            position: relative;
+            transform: translateY(-50%);
+            font-family: $text-sans;
+            font-size: 20px;
+            width: auto;
+            display: block;
+            font-weight: normal;
+            float: left;
+            margin-left: 20px;
+            @include mq($until: desktop) {
+                font-size: 14px;
+            }
+        }
+
+        .seatstack-party-name {
+            text-align: right;
+            width: 20%;
+            position: relative;
+            float: left;
+            display: block;
+            height: 100%;
+            vertical-align: middle;
+
+            h4 {
+                font-size: 20px;
+                position: relative;
+                margin: 0 100px 0 auto;
+                font-weight: 500;
+                line-height: 80px;
+
+
+            }
+            .sprite {
+                position: absolute;
+                right: 10px;
+                top: -5px;
+            }
+
+            @include mq($until: desktop) {
+                h4 {
+                    margin: 0;
+                    position: absolute;
+                    bottom: 0;
+                    line-height: 12px;
+                    text-align: center;
+                    font-size: 12px;
+                    width: 100%;
+                    right: 10px;
+                }
+
+                .sprite {
+                    height: 40px;
+                }
+            }
+        }
+    }
+
+    @include mq($seatstack-bp) {
+        height: $seatstack-height;
+        margin-bottom: 40px;
+    }
+
+    li, li span a {
+        font-family: $egyptian;
+        font-weight: bold;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    @each $party, $color in $partyColors {
+        li[data-partyname='#{$party}'],
+        li[data-partyname='#{$party}'] span a {
+            color: $color;
+        }
+    }
+
+    li {
+        float: left;
+        height: 100%;
+        text-align: center;
+        position: relative;
+    }
+}
+
+$seatstack-list-lineheight: 24px;
+
+.seatstack-list {
+    width: calc(50% - 5px);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    float: left;
+
+    &.seatstack-list--2 {
+        float: right;
+    }
+    @include mq($seatstack-bp) {
+        width: calc(50% - 10px);
+    }
+    @include mq(desktop) {
+        width: calc(50% - 20px);
+    }
+    @include mq($until: desktop) {
+        margin-top: 20px;
+    }
+}
+.seatstack-list__item {
+    vertical-align: middle;
+    height: 24px;
+    line-height: 24px;
+    border-bottom: 1px solid #f1f1f1;
+    transition: background-color 50ms;
+
+    @include mq($seatstack-bp) {
+        height: 36px;
+        line-height: 36px;
+    }
+    &.is-header,
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    @include mq($seatstack-bp) {
+        &[data-partyhover]:not(.is-header):hover {
+            cursor: pointer;
+            background-color: #f7f7f7;
+            transition: none;
+        }
+    }
+}
+
+.seatstack-list__partybox {
+  width: 8px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 2px;
+  background-color: #b3b3b3;
+}
+
+.seatstack-list__party-short-name {
+    display: none;
+    margin-left: 12px;
+
+    @include mq($until: $seatstack-bp) {
+        display: inline;
+        margin-left: 6px;   
+    }
+}
+
+.seatstack-list__party-name {
+    margin-left: 12px;
+
+    @include mq($until: $seatstack-bp) {
+        margin-left: 6px;
+        display: none;
+    }
+}
+
+.seatstack-list__gains,
+.seatstack-list__losses,
+.seatstack-list__seats {
+    float: right;
+
+    &.is-header {
+        font-size: 11px;
+        border-left: 0;
+    }
+}
+
+.seatstack-list__gains,
+.seatstack-list__losses {
+    color: #aaa;
+    width: 35px;
+    border-left: 1px dotted #f1f1f1;
+    text-align: right;
+
+    display: none !important;
+    @media (min-width: 370px) {
+        display: inline-block !important;
+    }
+}
+
+
+@media (max-width: 370px) {
+    .seatstack-list__item.is-header {
+        display: none;
+    }
+}
+
+.seatstack-list__gains {
+    padding-right: 6px;
+}
+
+.seatstack-list__seats {
+    color: #333;
+    font-weight: bold;
+    padding-right: 6px;
+}
+
+.ALP {
+    color: #b51800;
+}
+
+.NAT {
+    color: #197caa;
+}
+
+.LIB {
+    color: #005689;
+}
+
+.GRN {
+    color: #298422;
+}
+
+.IND {
+    color: lightgrey;
+}
+
+#senatestack {
+    .seatstack {
+        border-bottom: none;
+
+        .seatstack__totals {
+            top: $seatstack-height + 50;
+            right: auto;
+        }
+
+        @include mq($until: desktop) {
+            margin-top: 20px;
+            padding: 0;
+        }
+    }
+    .seatstack__bar {
+        margin-left: 0;
+         li {
+            font-size: 16px;
+            overflow: visible;
+            text-align: center;
+            span {
+                bottom: 100%;
+                position: absolute;
+            }
+            &[data-partyname='alp'] {
+                text-align: left;
+                float: left;
+            }
+
+            &[data-partyname='grn'] {
+                text-align: left;
+                float: left;
+            }
+
+            &[data-partyname='ind'] {
+                float: right;
+            }
+
+            &[data-partyname='onp'] {
+                float: right;
+            }
+
+            &[data-partyname='kap'] {
+                float: right;
+            }
+
+            &[data-partyname='grn'] span {
+                left: 0;
+                width: 100%;
+                text-align: center;
+                left: auto;
+            }
+
+            &[data-partyname='alp'] span {
+                left: 0;
+                width: 100%;
+                text-align: center;
+                left: auto;
+            }
+
+            &[data-partyname='lib'] span {
+                right: 0;
+                width: 100%;
+                text-align: center;
+                left: auto;
+            }
+
+            &[data-partyname='lnp'] span {
+                right: 0;
+                width: 100%;
+                text-align: center;
+                left: auto;
+            }
+
+            &[data-partyname='nat'] span {
+                right: 0;
+                width: 100%;
+                text-align: center;
+                left: auto;
+            }
+
+            &[data-partyname='lnp'] {
+                text-align: right;
+                float: right;
+            }
+
+            &[data-partyname='nat'] {
+                text-align: right;
+                float: right;
+            }
+
+            &[data-partyname='lib'] {
+                text-align: right;
+                float: right;
+            }
+
+
+            &[data-partyname='lnp'] span {
+                right: auto;
+                right: 0;
+            }
+        }
+    }
+    .seatstack-list__partybox[data-partyname='pup'] {
+        background-color: #b3b3b3;
+    }
+}
+

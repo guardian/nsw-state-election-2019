@@ -1,0 +1,100 @@
+.veri-party-table {
+    border-top: 1px solid #f1f1f1;
+    clear: both;
+    padding-top: 5px;
+
+    h2 {
+        clear: both;
+        font-weight: bold;
+        margin-bottom: 24px;
+    }
+    table {
+        clear: both;
+        font-size: 14px;
+        width: 100%;
+        border-collapse: collapse;
+
+        tbody tr:hover {
+            background-color: #f7f7f7;
+        }
+
+        td,th {
+            text-align: right; // all right aligned except for party name field
+            line-height: 32px;
+        }
+        th {
+            font-weight: normal;
+            color: #767676;
+            text-transform: lowercase;
+        }
+        td {
+            border-top: 1px dotted #dfdfdf;
+        }
+
+        tbody {
+            font-family: $agate;
+        }
+        td:nth-child(1),
+        th:nth-child(1) {
+            text-align: left;
+        }
+        td:nth-child(1),
+        th {
+            font-family: $text-sans;
+            font-size: 14px;
+        }
+    }
+    .veri__blip {
+        display: none;
+    }
+    @include mq($until: mobileLandscape) {
+        td,th {
+            &:nth-child(3),&:nth-child(4),&:nth-child(5),&:nth-child(8) {
+                display: none;
+            }
+        }
+    }
+}
+
+.veri__party-table-fullname {
+    display: none;
+    @include mq(tablet) {
+        display: inline;
+    }
+}
+
+.veri__party-table-abbrv {
+    display: inline;
+    @include mq(tablet) {
+        display: none;
+    }
+}
+
+.veri-party-table__seat-party {
+    .veri__blip {
+        display: inline-block;
+    }
+    td:first-child {
+        font-weight: bold;
+    }
+}
+
+.veri-party-table__na {
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    color: #bdbdbd;
+}
+
+@each $party, $color in $partyColors { // always show major parties
+    .veri-party-table .veri__blip--#{$party} {
+        display: inline-block !important;
+    }
+}
+.veri-party-table__empty-msg {
+    font-family: $text-sans;
+    font-size: 16px;
+    padding-top: 48px;
+    padding-bottom: 24px;
+    width: 100%;
+    text-align: center;
+    color: #767676;
+}

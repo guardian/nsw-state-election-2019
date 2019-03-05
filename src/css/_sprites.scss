@@ -1,0 +1,29 @@
+.sprite {
+  display: block;
+  width:65px;
+  height:90px;
+
+  &#turnbull {
+    background: transparent right bottom no-repeat;
+  }
+
+  &#shorten {
+    background: transparent right bottom no-repeat;
+  } 
+
+
+  @media (max-width:600px) {
+
+    &#turnbull {
+      background: transparent right bottom no-repeat;
+      width:65px;
+      height:60px;
+      }
+
+    &#shorten {
+      background: transparent right bottom no-repeat;
+      width:65px;
+      height:60px;
+    } 
+  }
+}

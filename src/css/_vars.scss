@@ -1,0 +1,38 @@
+$partyColors: (
+	lnp:    #005689,
+  coal:    #005689,
+  nat:    #197caa,
+  lib:    #005689,
+  clp:    #005689,
+  lp:    #005689,
+  np:    #197caa,
+	speaker:    #005689,
+	grn:  #298422,
+	alp:    #b51800,
+  kap:  #b814d9,
+  pup: #7D0069,
+  nxt: #e6711b,
+  xen: #e6711b,
+	others: #B3B3B4,
+	ind:    #B3B3B4,
+  other:  #B3B3B4,
+  onp: #ff9b0b
+	// pending:    #dfdfdf
+);
+
+$arrowColorOverrides: (
+	ld:  #ff920d,
+	snp: #e6bd03,
+);
+
+@function partyColor($party) {
+	@return map-get($partyColors, $party);
+}
+
+@function arrowColor($party) {
+    @if map-has-key($arrowColorOverrides, $party) {
+        @return map-get($arrowColorOverrides, $party);
+    } @else {
+        @return partyColor($party);
+    }
+}

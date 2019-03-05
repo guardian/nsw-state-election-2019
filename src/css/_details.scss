@@ -1,0 +1,303 @@
+.veri__details {
+    background-color: #f6f6f6;
+    box-sizing: border-box;
+    padding: 0 10px;
+    overflow: hidden;
+    transition: max-height 200ms;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-size: 14px;
+    max-width: 380px;
+    position: relative;
+    
+    h2 {
+        font-family: "Guardian Text Egyptian Web",Georgia,serif;
+        font-size: 16px;
+        line-height: 20px;
+        margin: 12px 0;
+        font-weight: bold;
+        clear: both;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        font-family: $text-sans;
+        color: #767676;
+        font-weight: normal;
+        margin: 20px 0 8px;
+        font-size: 14px;
+    }
+
+    @include mq($until: desktop) {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        box-sizing: border-box;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(246,246,246, 0.95);
+    }
+
+    @include mq(tablet) {
+        margin-top: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 12px;
+    }
+    .veri__share-btns {
+        float: left;
+        padding-bottom: 0;
+    }
+}
+
+.veri__details-electorate-name {
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.veri__details-counted {
+    font-weight: normal;
+    font-family: $text-sans;
+    font-style: italic;
+    color: #767676;
+    font-size: 14px;
+    float: right;
+    
+    @include mq($until: desktop) {
+        margin-right: 50px;
+    }
+}
+
+.veri__details--show {
+
+    @include mq($until: desktop) {
+        max-height: 100%;
+        z-index: 100;
+        left: 0;
+        overflow-y: scroll;
+    }
+}
+
+.veri__close-details {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    fill: #999;
+    display: none;
+    &:hover {
+        fill: #767676;
+    }
+    width: 36px;
+    height: 36px;
+    svg {
+        width: 36px;
+        height: 36px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    @include mq($until: desktop) {
+        display: block;
+    }
+
+    @include mq(tablet) {
+        width: 24px;
+        height: 24px;
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+}
+
+.veri__details-status {
+    clear: both;
+    font-size: 16px;
+
+    dt, dd { float: left; padding: 2px 0;}
+    dd { margin-left: 5px; }
+    dt { 
+        font-weight: bold;
+        clear:both; 
+    }
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+}
+
+.veri__details-table {
+    font-family: $agate;
+    font-size: 14px;
+    border-collapse: separate;
+    border-spacing: 0;
+    td {
+        border-spacing: 0;
+        padding: 6px 2px;
+        line-height: 16px;
+    }
+    thead th {
+        font-weight: normal;
+        color: #767676;
+        font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+        font-size: 14px;
+        &:nth-child(2) { // candidates
+            text-align: left;
+        }
+        &:nth-child(3) { // votes
+            padding-right: 20px;
+        }
+        &:nth-child(4) { // vote %
+            padding-right: 5px;
+        }
+        &:nth-child(3),
+        &:nth-child(4) {
+            text-align: right;
+        }
+    }
+    tbody tr {
+        line-height: 24px;
+    }
+    tbody tr + tr td {
+        border-top: 1px solid #dcdcdc;
+    }
+    a {
+        color: inherit;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    td,th {
+        &:nth-child(3) {
+            @include mq(tablet, $until: desktop) {
+                display: none;
+            }
+        }
+    }
+}
+
+.veri__details-table--result {
+    tbody tr:first-child {
+        font-weight: bold;
+    }
+}
+
+.veri__details-candidate {
+    padding-right: 20px;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-size: 14px;
+    min-width: 120px;
+}
+
+.veri__details-vote-count {
+    padding-right: 20px;
+}
+
+.veri__details-vote-count,
+.veri__details-vote-perc {
+    text-align: right;
+}
+
+.veri__details-vote-perc {
+    padding-right: 5px;
+}
+
+.veri__details-bar,
+.veri__details-bar-container {
+    height: 10px;
+    display: inline-block;
+}
+
+.veri__details-bar-container {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.veri__details-bar {
+    position: absolute;
+}
+
+.veri__details-footer {
+    margin: 12px 0;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.veri__share-btns {
+    padding-bottom: 24px;
+    button {
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 9000px;
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 100ms;
+        &:hover { transition: none; }
+        &[data-source='twitter'] {
+            background: #bdbdbd url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iLTIgLTIgMzIgMzIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yMS4zIDEwLjV2LjVjMCA0LjctMy41IDEwLjEtOS45IDEwLjEtMiAwLTMuOC0uNi01LjMtMS42LjMgMCAuNi4xLjguMSAxLjYgMCAzLjEtLjYgNC4zLTEuNS0xLjUgMC0yLjgtMS0zLjMtMi40LjIgMCAuNC4xLjcuMWwuOS0uMWMtMS42LS4zLTIuOC0xLjgtMi44LTMuNS41LjMgMSAuNCAxLjYuNC0uOS0uNi0xLjYtMS43LTEuNi0yLjkgMC0uNi4yLTEuMy41LTEuOCAxLjcgMi4xIDQuMyAzLjYgNy4yIDMuNy0uMS0uMy0uMS0uNS0uMS0uOCAwLTIgMS42LTMuNSAzLjUtMy41IDEgMCAxLjkuNCAyLjUgMS4xLjgtLjEgMS41LS40IDIuMi0uOC0uMy44LS44IDEuNS0xLjUgMS45LjctLjEgMS40LS4zIDItLjUtLjQuNC0xIDEtMS43IDEuNXoiLz48L3N2Zz4=') no-repeat center center;
+            &:hover { background-color: #03b3ee; }
+        }
+        &[data-source='facebook'] {
+            background: #bdbdbd url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iLTIgLTIgMzIgMzIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xNy45IDE0aC0zdjhIMTJ2LThoLTJ2LTIuOWgyVjguN0MxMiA2LjggMTMuMSA1IDE2IDVjMS4yIDAgMiAuMSAyIC4xdjNoLTEuOGMtMSAwLTEuMi41LTEuMiAxLjN2MS44aDNsLS4xIDIuOHoiLz48L3N2Zz4=') no-repeat center center;
+            &:hover { background-color: #3067a3; }
+        }
+    }
+}
+
+.veri__details-updated {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    color: #767676;
+    &:before {
+        content: 'declared ';
+    }
+}
+
+.veri__details-msg--pending {
+    font-style: italic;
+    color: #767676;
+    margin-bottom: 12px;
+}
+
+.veri-party-table-notes {
+    width: 100%;
+    text-align: center;
+    font-size: 0.7rem;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 400;
+    color: #808080;
+    line-height: 1.1rem;
+}
+
+.veri-party-table-tab-switch {
+    min-width: 100px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 400;
+    background-color: #808080;
+    color: white;
+    float: right;
+    clear: both;
+    border-radius: 15px;
+    margin: 10px;
+    cursor: pointer;
+}

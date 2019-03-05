@@ -1,0 +1,123 @@
+header.page-header {
+  border-bottom:1px solid #dcdcdc;
+  padding-bottom:.45rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px 20px 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  .header-right {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: 200px;
+    box-sizing: border-box;
+    #parliament-graphic {
+        background: url(@@assetPath@@/assets/imgs/parliament.svg);
+        background-size: auto 100px;
+        height: 100px;
+        width: 200px;
+        background-position: center top;
+        background-repeat: no-repeat;
+        margin-left: 0; 
+    }    
+    .election-result {
+      color: #767676;
+      margin-top: 10px;
+      font-size: 14px;
+      text-align: center;
+      font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
+      width: 100%;
+      .election-outcome {
+        font-weight: bold;
+        font-size: 16px;
+        &.coalition{
+          color: #005689;
+        }
+        &.labor{
+          color: #b51800;
+        }
+      }
+    } 
+    @include mq($until: desktop) {
+      position: relative;
+      padding: 10px 20px 10px;
+      width: 100%;
+      #parliament-graphic {
+        display: none;
+      }
+      .election-result {
+        text-align: left;
+      }
+    }
+  }
+
+  h1 {
+    font-family: "Guardian Egyptian Web",Georgia,serif;
+    font-size: 36px;
+    max-width: 700px;
+    font-weight: normal;
+    color: #333;
+    line-height: 42px;
+
+    z-index:10;
+    position: relative;
+  }
+
+  .headerText {
+      color: #767676;
+      font-family: "Guardian Text Egyptian Web",Georgia,serif;
+      font-size: 16px;
+      line-height: 20px;
+      margin: 16px 0;
+      z-index: 10;
+      position: relative;
+      max-width: 600px;
+
+      p { padding-top: 0; }
+  }
+  .int-byline {
+    color: #767676;
+    font-weight: 600;
+  }
+  .timestampSocial {
+    font-size:0.8rem;
+    line-height:32px;
+    color:#767676;
+    font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
+  }
+
+  .btns-share .btn-tt {
+    background: #bdbdbd url(@@assetPath@@/assets/imgs/twitterIcon.svg) no-repeat center center;
+  }
+  .btns-share .btn-tt:hover {
+    background-color: #03b3ee;
+  }
+
+  .btns-share .btn-fb {
+      background: #bdbdbd url(@@assetPath@@/assets/imgs/facebookIcon.svg) no-repeat center center;
+  }
+
+  .btns-share .btn-fb:hover {
+      background-color: #3067a3;
+  }
+  .btns-share button {
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 9000px;
+      display: inline-block;
+      vertical-align: top;
+      cursor: pointer;
+      outline: none;
+      -webkit-appearance: button;
+      text-transform: none;
+      overflow: visible;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+  }
+}

@@ -1,0 +1,106 @@
+[{
+  "partyCode": "ALP",
+  "shortName": "Labor",
+  "partyName": "Labor party",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "left"
+}, {
+  "partyCode": "LIB",
+  "shortName": "Liberal",
+  "partyName": "Liberal party",
+  "coalition": "coalition",
+  "libCoalition": "coalition",
+  "politicalization": "right"
+}, {
+  "partyCode": "LNP",
+  "shortName": "Liberal Nat",
+  "partyName": "Liberal National party",
+  "coalition": "coalition",
+  "libCoalition": "coalition",
+  "politicalization": "right"
+}, {
+  "partyCode": "NAT",
+  "shortName": "National",
+  "partyName": "National party",
+  "coalition": "coalition",
+  "libCoalition": "",
+  "politicalization": "right"
+}, {
+  "partyCode": "IND",
+  "shortName": "Independent",
+  "partyName": "Independent",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "centre"
+}, {
+  "partyCode": "PUP",
+  "shortName": "Palmer",
+  "partyName": "Palmer United party",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "right"
+}, {
+  "partyCode": "KAP",
+  "shortName": "Katter",
+  "partyName": "Katter party",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "right"
+}, {
+  "partyCode": "GRN",
+  "shortName": "Greens",
+  "partyName": "Greens",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "left"
+}, {
+  "partyCode": "CLP",
+  "shortName": "Country Lib",
+  "partyName": "Country Liberal party",
+  "coalition": "coalition",
+  "libCoalition": "coalition",
+  "politicalization": "right"
+}, {
+  "partyCode": "LDP",
+  "shortName": "Liberal Dem",
+  "partyName": "Liberal Democratic party",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "right"
+}, {
+  "partyCode": "FF",
+  "shortName": "Family First",
+  "partyName": "Family First",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": ""
+}, {
+  "partyCode": "AMEP",
+  "shortName": "Motoring",
+  "partyName": "Motoring Enthusiasts",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "centre"
+}, {
+  "partyCode": "NXT",
+  "shortName": "Xenophon",
+  "partyName": "Nick Xenophon Team",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "left"
+}, {
+  "partyCode": "ONP",
+  "shortName": "Hanson",
+  "partyName": "Pauline Hanson's One Nation",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "right"
+}, {
+  "partyCode": "JLN",
+  "shortName": "Lambie",
+  "partyName": "Jacqui Lambie Network",
+  "coalition": "",
+  "libCoalition": "",
+  "politicalization": "right"
+}]

@@ -1,0 +1,152 @@
+.by-constituency {
+    position: relative;
+    overflow: hidden;
+}
+
+.by-constituency__results {
+    font-family: $text-sans;
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
+}
+
+.by-constituency__time {
+    display: none;
+    float: right;
+}
+
+.by-constituency__party {
+    &::before {
+        content: "";
+        border-radius: 2px;
+        display: inline-block;
+        width: 5px;
+        height: 10px;
+        margin-right: 3px;
+        background-color: #B3B3B4;
+    }
+
+    @each $party, $color in $partyColors {
+        &[data-party='#{$party}']::before {
+            background-color: $color;
+        }
+    }
+}
+
+.by-constituency__text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.by-constituency__how {
+    display: none;
+    @include mq(desktop) {
+        display: inline;
+    }
+}
+
+.by-constituency__map {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 168px;
+    box-sizing: border-box;
+    border-left: 2px solid #484f53;
+
+    &:first-child {
+        border-left: 0;
+        border-right: 2px solid #484f53;
+    }
+
+    &::after {
+        content: "2015";
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: white;
+        background-color: #484f53;
+        padding: 2px 5px;
+    }
+
+    &:first-child::after {
+        content: "2010";
+        left: auto;
+        right: 0;
+    }
+}
+
+.by-constituency__map > svg {
+    width: 100%;
+    height: 100%;
+}
+
+.by-constituency__arrow {
+    position: absolute;
+    top: 50%;
+    left: 29%;
+    right: 29%;
+    background-color: #333;
+    height: 2px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        right: -2px;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-left: 10px solid #333;
+        border-bottom: 5px solid transparent;
+    }
+}
+
+.map-constituency {
+    stroke: #767676;
+    stroke-width: 1;
+    stroke-opacity: 0.3;
+    fill: url(#pending);
+    fill-opacity: 0.6;
+}
+
+.map-constituency[data-party] {
+    fill: #B3B3B4;
+    stroke: #fff;
+}
+
+@each $party, $color in $partyColors {
+    .map-constituency[data-party='#{$party}'] {
+        fill: $color;
+    }
+}
+
+.map-constituency[data-selected] {
+    stroke: #333;
+    stroke-width: 2;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+}
+
+.map-city {
+    text-anchor: middle;
+    fill: white;
+    stroke-width: 0.2;
+    &.map-city--below {
+        stroke: #333;
+        opacity: 0.25;
+        stroke-width: 4px;
+        stroke-linejoin: round;
+    }
+}
+
+.map-region {
+    stroke: white;
+    stroke-width: 2;
+    fill: none;
+}
+
+.map-group {
+    -webkit-transition: -webkit-transform 1s ease-out;
+    transition: transform 1s ease-out;
+}

@@ -1,0 +1,48 @@
+.election-electic-band {
+    box-sizing: border-box;
+    width: 100%;
+    margin: auto;
+    display: inline-block;
+}
+
+.iOS-device {
+    box-sizing: border-box;
+    width: 100%;
+    margin: auto;
+    display: inline-block;
+    padding-right: 25px;
+}
+
+.election-container {
+
+    box-sizing: border-box;
+    width: 100%;
+
+	padding-bottom: 60px;
+
+	#results-table {
+		display: none;
+	}
+
+	.seatstack-table-block {
+		display: inline-block;
+		width: 100%;
+	}
+
+    display: block;
+
+    h2 {
+        font-family: "Guardian Titlepiece";
+        padding-left:20px;
+        padding-right:20px;
+        padding-top:20px;
+    }
+
+    h2 span {
+    	font-size: 0.8rem;
+    	font-family: "Guardian Titlepiece";
+    	color: #a1a1a1;
+    }
+
+}
+

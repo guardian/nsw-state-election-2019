@@ -1,0 +1,97 @@
+<div id="qe2017" class="election-electic-band {{#if isApp}}iOS-device{{/if}}">
+
+	<div class="election-container">
+	    
+	    <h2>NSW State Election 2019<br><span id="timeStamp">{{timestamp}}</span></h2>
+
+	    {{#if isApp}}
+	    {{else}}
+	    {{#if ticker}}
+		<div class="ticker-wrap">
+			<div class="ticker">
+				<div class="ticker__item">LATEST PREDICTIONS:</div>
+				{{#each latest}}
+				<div class="ticker__item"><span class="{{party}}">{{status}}</span></div>
+				{{/each}}
+			</div>
+		</div>
+		{{/if}}
+		{{/if}}
+
+	    <div id="senatestack">
+	    	
+			<div class="seatstack">
+			    <div class="seatstack__majority"><strong>{{ MAJORITY_SEATS }} seats</strong><span> or more for majority</span></div>
+			    <ul class="seatstack__bar">
+			        {{#each partyData}}
+			            <li data-partyname="{{this.short}}" style="width: {{ electionSelection(this.value) }}%">
+			                <span>{{ seatDisplay(this.value) }}</span>
+			            </li>
+			        {{/each}}
+			    </ul> 
+
+
+			    <div class="seatstack-table-block">
+
+			        <ul class="seatstack-list seatstack-list--1">
+
+			            {{#if partyListLeft.length}}
+			            <li class="seatstack-list__item is-header">
+			                <span class="seatstack-list__seats is-header">seats</span>
+			            </li>
+			            {{/if}}
+
+			            {{#each partyListLeft}}
+
+			            <li class="seatstack-list__item" data-partyhover="{{this.short}}">
+			                <span class="seatstack-list__partybox" data-partyname="{{this.short}}"></span>
+			                <span class="seatstack-list__party-name">{{this.name}}</span>
+			                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
+			                <span class="seatstack-list__seats">{{this.value}}</span>
+			            </li>
+
+			            {{/each}}
+
+			        </ul>
+
+			        <ul class="seatstack-list seatstack-list--2">
+
+			            {{#if partyListRight.length}}
+			            <li class="seatstack-list__item is-header">
+			                <span class="seatstack-list__seats is-header">seats</span>
+			            </li>
+			            {{/if}}
+
+			            {{#each partyListRight}}
+
+			            <li class="seatstack-list__item" data-partyhover="{{this.short}}">
+			                <span class="seatstack-list__partybox" data-partyname="{{this.short}}"></span>
+			                <span class="seatstack-list__party-name">{{this.name}}</span>
+			                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
+			                <span class="seatstack-list__seats">{{this.value}}</span>
+			            </li>
+
+			            {{/each}}
+
+			        </ul>
+
+			    </div>
+			    
+			</div>
+
+	    </div>
+
+	    <div id="console"></div>
+
+	    <div class="veri-party-table-tab-switch">See all</div>
+
+	    <div id="results-table">
+	        <div class="veri-party-table">
+	            <table></table>
+	            <div class="veri-party-table-notes"></div>
+	        </div>
+	    </div>
+
+	</div>
+
+</div>

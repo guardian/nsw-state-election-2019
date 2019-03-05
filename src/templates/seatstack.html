@@ -1,0 +1,60 @@
+
+<div class="seatstack">
+    <div class="seatstack__majority"><strong>{{ MAJORITY_SEATS }} seats</strong><span> or more for majority</span></div>
+    <ul class="seatstack__bar">
+        {{#each partyData}}
+            <li data-partyname="{{this.short}}" style="width: {{electionSelection this.value }}%">
+                <span>{{seatDisplay this.value}}</span>
+            </li>
+        {{/each}}
+    </ul> 
+
+
+    <div class="seatstack-table-block">
+
+        <ul class="seatstack-list seatstack-list--1">
+
+            {{#if partyListLeft.length}}
+            <li class="seatstack-list__item is-header">
+                <span class="seatstack-list__seats is-header">seats</span>
+            </li>
+            {{/if}}
+
+            {{#each partyListLeft}}
+
+            <li class="seatstack-list__item" data-partyhover="{{this.short}}">
+                <span class="seatstack-list__partybox" data-partyname="{{this.short}}"></span>
+                <span class="seatstack-list__party-name">{{this.name}}</span>
+                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
+                <span class="seatstack-list__seats">{{this.value}}</span>
+            </li>
+
+            {{/each}}
+
+        </ul>
+
+        <ul class="seatstack-list seatstack-list--2">
+
+            {{#if partyListRight.length}}
+            <li class="seatstack-list__item is-header">
+                <span class="seatstack-list__seats is-header">seats</span>
+            </li>
+            {{/if}}
+
+            {{#each partyListRight}}
+
+            <li class="seatstack-list__item" data-partyhover="{{this.short}}">
+                <span class="seatstack-list__partybox" data-partyname="{{this.short}}"></span>
+                <span class="seatstack-list__party-name">{{this.name}}</span>
+                <span class="seatstack-list__party-short-name">{{this.shortName}}</span>
+                <span class="seatstack-list__seats">{{this.value}}</span>
+            </li>
+
+            {{/each}}
+
+        </ul>
+
+    </div>
+    
+</div>
+

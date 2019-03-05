@@ -1,0 +1,535 @@
+#auscartogram-container {
+    width: 100%;
+    float: left;
+    
+    @include mq($from: desktop) {
+        float: right;
+        position: relative;
+        width: 70%;
+    }
+}
+
+#auscartogram {
+/*    position: absolute;
+*/    width: 100%;
+}
+
+.cartogram {
+    font-family: $text-sans;
+    svg {
+        width: 100%;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
+    svg:not(:root) { overflow: hidden; }
+    * {
+        cursor: pointer;
+    }
+    box-sizing: border-box;
+    border-left: 1px solid transparent;
+    &[zoomed] {
+        border-left-color: #eee;
+    }
+}
+
+.cartogram__hex {
+    // transition: all 50ms ease-out;
+}
+
+.cartogram__hex--empty {
+    fill: #ccc;
+    stroke: #aaa;
+    fill-opacity: 0.3;
+}
+
+.cartogram__hexgroup {
+    stroke: #fff;
+    stroke-opacity: 0.3;
+    fill-opacity: 0.8;
+}
+
+.cartogram__regiongroup {
+    fill: none;
+    // stroke: #666;
+    stroke: #fff;
+    // stroke-opacity: 0.9;
+    // transition: all 50ms ease-out;
+}
+
+.cartogram[map-mode='party'] .cartogram__hex {
+    stroke: #fff;
+}
+
+.cartogram[map-mode='party'] .cartogram__hex[party='pending'] {
+    stroke: #767676;
+}
+
+.cartogram[party-highlight] .cartogram__hex {
+    fill-opacity: 0.3;
+    fill: #ccc;
+    stroke: #aaa;
+    stroke-opacity: 0.2;
+}
+
+.cartogram__arrowgroup {
+    stroke: #333;
+    stroke-width: 1.25px;
+}
+
+.cartogram[map-mode='arrow'] {
+    .cartogram__hex {
+        fill-opacity: 0.3;
+        fill: #ccc;
+        stroke: #aaa;
+        stroke-opacity: 0.2;
+    }
+    .cartogram__regiongroup {
+        stroke: #bdbdbd;
+    }
+    .cartogram__hex--has-arrow {
+        fill: #efefef;
+    }
+}
+
+@each $party, $color in $partyColors {
+    .cartogram[map-mode='party'],
+    .cartogram[map-mode='majority'] {
+        &:not([party-highlight]) .cartogram__hex[party='#{$party}'] {
+            fill:$color;
+        }
+    }
+    .cartogram[arrow-party='#{$party}'] {
+        #arrowhead {
+            fill: arrowColor($party);
+        }
+        .cartogram__arrow {
+            stroke: arrowColor($party);
+        }
+        .cartogram__legend-arrow {
+            border-color: arrowColor($party);
+        }
+        .cartogram__legend-arrow--gain:after {
+            border-left-color: arrowColor($party);
+        }
+        .cartogram__legend-arrow--loss:after {
+            border-right-color: arrowColor($party);
+        }
+    }
+    .cartogram[party-highlight='#{$party}'] .cartogram__hex[party='#{$party}'] {
+        fill-opacity: 0.9;
+        stroke-opacity: 0.8;
+        stroke: #555;
+        fill:$color;
+    }
+
+    .cartogram__majority-key--#{$party} span {
+        background-color: $color;
+    }
+}
+
+.cartogram__majority-key {
+    width: 100px;
+    position: relative;
+    text-indent: 110px;
+    font-family: $text-sans;
+    font-size: 12px;
+    height: 12px;
+    margin-bottom: 3px;
+    span {
+        width: 33.3%;
+        position: absolute;
+        height: 100%;
+        &:nth-child(1) {
+            opacity: 0.33;
+            left: 0;
+        }
+        &:nth-child(2) {
+            opacity: 0.66;
+            left: 33.3%;
+        }
+        &:nth-child(3) {
+            left: 66.6%;
+        }
+    }
+    &.cartogram__majority-key--lab {
+        span:nth-child(1):before {
+            content: '0%';
+            position: absolute;
+            left: 0;
+            bottom: 100%;
+            text-indent: -2px;
+        }
+        span:nth-child(2):before {
+            content: '15%';
+            position: absolute;
+            left: 0;
+            bottom: 100%;
+            text-indent: -6px;
+        }
+        span:nth-child(3):before {
+            content: '30%';
+            position: absolute;
+            left: 0;
+            bottom: 100%;
+            text-indent: -6px;
+        }
+    }
+}
+
+.cartogram[party-highlight='pending'] .cartogram__hex:not(.cartogram__hex--pending) {
+    fill-opacity: 0.05;
+    fill: #ddd;
+}
+
+.cartogram[party-highlight='lib'] .cartogram__hex--lib,
+.cartogram[party-highlight='alp'] .cartogram__hex--alp {
+    stroke: #ddd;
+}
+
+.cartogram[latest-results] {
+    .cartogram__hex {
+        fill-opacity: 0.3;
+    }
+    .cartogram__hex--latest {
+        fill-opacity: 0.9;
+        stroke: #333;
+        stroke-width: 1.5;
+        stroke-opacity: 1;
+    }
+}
+
+.cartogram[map-mode='choropleth'],
+.cartogram[party-highlight] {
+    .cartogram__regiongroup {
+        // stroke-opacity: 0.3;
+        stroke: #999;
+    }
+}
+
+
+.cartogram__hex--pending {
+    stroke: #999;
+    opacity: 0.7;
+}
+
+.cartogram[focus-constituency] {
+    .cartogram__hex { fill-opacity: 0.3; }
+    .cartogram__hex--focus { fill-opacity: 0.9; }
+}
+
+.cartogram__hex--focus {
+    stroke: #333 !important;
+    stroke-width: 1.5;
+    stroke-opacity: 1;
+    pointer-events: none;
+}   
+
+
+.cartogram__label {
+    text-anchor: middle;
+    stroke-width: 0.2;
+    font-family: "Guardian Text Sans Web","Agate Sans",sans-serif;
+    fill: #FFF;
+    font-size: 16px;
+    opacity: 1;
+}
+
+.cartogram__label--city {
+  font-size: 12px;
+}
+
+.cartogram__label--below {
+  stroke: #000;
+  opacity: 0.25;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.cartogram__city {
+  fill: #333;
+  stroke: none;
+}
+
+.cartogram__hex--selected {
+    stroke: #333 !important;
+    stroke-width: 2;
+    stroke-opacity: 1;
+}
+
+.cartogram__controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    cursor: default;
+    width: 280px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    @include mq($until: tablet) {
+        display: none;
+    }
+    .cartogram[zoomed] &{
+        background: rgba(255,255,255,0.9);
+    }
+}
+
+.cartogram__legend {
+    clear: both;
+    padding-top: 12px;
+    padding-left: 10px;
+    cursor: default;
+    width: 100%;
+    h4 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    p {
+        font-size: 13px;
+        color: #767676;
+        margin-bottom: 0;
+    }
+    .cartogram[map-mode="majority"] & {
+        h4 { margin-top: 0; margin-bottom: 6px }
+        p { margin-bottom: 24px; margin-top: 0; }
+    }
+    @include mq($until: desktop) {
+        width: 100px;
+        float: right;
+    }
+    .cartogram[zoomed] & {
+        @include mq($until: desktop) {
+            display: none;
+        }
+    }
+    .veri__legend {
+        margin-top: 6px;
+        li {
+            width: 33%;
+            display: inline-block;
+        }
+        @include mq($until: desktop) {
+            display: none;
+        }
+    }
+}
+
+.cartogram__legend-arrow {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 80px;
+  border-top: 2px solid red;
+  position: relative;
+}
+
+.cartogram__legend-arrow:after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    border: 5px solid transparent;
+    border-left-width: 8px;
+    border-right-width: 8px;
+    top: -6px;
+    width: 0;
+}
+
+.cartogram__legend-arrow--loss:after {
+    left: -10px;
+}
+
+.cartogram__gradient-key {
+    background-size: cover;
+    width: 120px;
+    position: relative;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    span {
+        position: absolute;
+        bottom: 100%;
+        font-size: 12px;
+        line-height: 14px;
+        &:first-child {
+            left: 0;
+        }
+        &:nth-child(2) {
+            right: 0;
+        }
+    }
+}
+.cartogram__dropdown-container {
+    float: left;
+    width: 150px;
+    position: relative;
+}
+
+.cartogram__dropdown {
+    font-family: $text-sans;
+    font-size: 12px;
+    background: #f7f7f7;
+    border: 0;
+    height: 30px;
+    outline: none;
+    border-radius: 6px;
+    padding-left: 10px;
+    border: 1px solid #bdbdbd;
+    margin-right: 20px;
+    width: 100%;
+}
+
+@-moz-document url-prefix() {
+    .cartogram__dropdown {
+        -moz-appearance: none;
+        text-indent: 0.01px;
+        text-overflow: '';
+        padding-right: 20px;
+    }
+    .cartogram__dropdown-container:after {
+        content: '';
+        border: 4px solid transparent;
+        border-top-color: #333;
+        position: absolute;
+        right: 10px;
+        top: 13px;
+        pointer-events: none;
+    }
+}
+
+.cartogram__reset-zoom {
+    float: right;
+    font-size: 12px;
+    font-family: $text-sans;
+    background-color: #f1f1f1;
+    border: 1px solid #dfdfdf;
+    color: #333;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    text-decoration: none;
+    opacity: 0.5;
+    cursor: default;
+
+    .cartogram[zoomed] & {
+        opacity: 1.0;
+        cursor: pointer;
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+
+    &:after {
+        content: 'Reset';
+        display: inline;
+        @include mq(tablet) {
+            content: 'Reset zoom';
+        }
+    }
+}
+
+.cartogram__tooltip {
+    font-family: $text-sans;
+    min-width: 140px;
+    max-width: 220px;
+    padding: 5px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid #ddd;
+    position: absolute;
+    visibility: hidden;
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.30);
+
+    @include mq(tablet) {
+        pointer-events: none;
+    }
+}
+
+.cartogram__tooltip h4 {
+    font-family: $text-sans;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.cartogram__tooltip p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: #000;
+}
+
+.cartogram__tooltip__tap2expand {
+    font-style: italic;
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 6px;
+    &:before {
+        @include mq($until: tablet) {
+            content: 'More details »';
+            display: block;
+            color: #005689;
+            text-decoration: underline;
+        }
+        @include mq(desktop) {
+            content: 'Click for details';
+            color: #767676;
+            text-decoration: none;
+            margin-top: 4px;
+        }
+    }
+
+}
+
+.cartogram__tooltip__blips {
+    font-size: 18px;
+    span { margin-right: 0; }
+}
+
+.cartogram__tooltip__spout {
+    position: absolute;
+    left: 50%;
+    margin-left: -6px;
+}
+
+.cartogram__tooltip__spout:after,
+.cartogram__tooltip__spout:before {
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.cartogram__tooltip__spout:before { // outside
+    border-width: 9px;
+    margin-top: -8px;
+    margin-left: -1px;
+}
+
+.cartogram__tooltip__spout:after { // inside
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.cartogram__tooltip--above {
+    margin-top: -25px;
+    .cartogram__tooltip__spout {
+        margin-top: 8px;
+        top: 100%;
+        &:before { border-top-color: #ddd; }
+        &:after { border-top-color: rgba(255,255,255,0.9); }
+    }
+}
+
+.cartogram__tooltip--below {
+    margin-top: 25px;
+    .cartogram__tooltip__spout {
+        margin-top: -8px;
+        top: 0;
+        &:before { border-bottom-color: #ddd; margin-top: -10px; }
+        &:after { border-bottom-color: rgba(255,255,255,0.9); }
+    }
+}
+
+.cartogram__gradient-key {
+    width: 100px;
+    height: 10px;
+}

@@ -1,0 +1,361 @@
+@import 'vars';
+@import 'mq';
+$text-sans: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+$agate: "Guardian Agate Sans 1 Web","Agate Sans",sans-serif;
+$egyptian: "Guardian Egyptian Web",Georgia,serif;
+
+#election-snap, #election-embed {
+    width: 100%;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding-top: 0;
+    font-family: $egyptian;
+    width: 100%;
+    box-sizing: border-box;
+    @import 'parties'; // TODO: remove when seatstack is fixed
+    $seatstack-height: 40px;
+    $seatstack-top: 30px;
+    $seatstack-bp: tablet !default;
+    background-color: #dcdcdc !important;
+    
+    #seatstack:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    h2 {
+        display: inline-block;
+        height: 40px;
+        @include mq($until: $seatstack-bp) {
+            font-size: 1.25em;
+        }
+    }
+
+    .seatstack__summary, .seatstack__detail {
+        float: left;
+        width: 50%;
+        margin-top: -40px;
+        height: auto;
+        box-sizing: border-box;
+        @include mq($until: $seatstack-bp) {
+            height: auto;
+            top: inherit;
+            width: 100%;
+            position: static;
+        }
+    }
+
+    .seatstack__summary {
+        padding-right: 20px;
+        border-right: 1px solid #767676;
+        @include mq($until: $seatstack-bp) {
+            border-right: none;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px dotted #767676;
+            padding-bottom: 10px;
+        }
+    }
+
+    .seatstack__detail {
+        padding-left: 20px;
+        left: 50%;
+        @include mq($until: $seatstack-bp) {
+            left: inherit;
+            padding-left: 0;
+            padding-bottom: 20px;
+            &:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+        }
+    }
+
+    .seatstack_majority-bars {
+        position:relative;
+        width: 100%;
+    }
+    
+    .full-results-link {
+        margin-left: 20px;
+        font-size: 14px;
+        font-family: $agate;
+        font-weight: bold;
+        position: absolute;
+        bottom: 5px;
+        right: 0;
+        z-index: 100;
+        color: #005689;
+
+        @include mq($until: desktop) {
+            position: relative;
+            margin-top: 10px;
+            margin-left: 0;
+        }
+    }
+
+    .snap {
+        overflow: hidden;
+        height: auto;
+        position: relative;
+        @include mq($until: $seatstack-bp) {
+            height: auto;
+        }
+    }
+
+    .snap__container {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        padding-bottom:10px;
+    }
+    .seatstack { 
+        position: relative; 
+        padding: 0;
+        @include mq($until: $seatstack-bp) {
+            margin-top:8px;
+        }
+    }
+    .seatstack__majority {
+        text-align: center;
+        right: 0;
+        top: -25px;
+        width: 75%;
+        position: absolute;
+        height: $seatstack-height * 2;
+        line-height: 40px;
+        font-size: 15px;
+        color: #333;
+        z-index: 100;
+        font-style: italic;
+
+        &:after {
+            content: '';
+            border-left: 3px dotted #767676;
+            position: absolute;
+            left: 50%;
+            top: $seatstack-top + 5;
+            height: $seatstack-height * 2 + 20;
+            z-index: 1;
+            @include mq($until: $seatstack-bp) {
+                border-width: 1px;
+            }
+        }
+
+    }
+
+    .seatstack__totals {
+        position: absolute;
+        font-size: 12px;
+        line-height: 24px;
+        right: 2px;
+        top: 0px;
+        color: #666;
+        font-family: $agate;
+        font-weight: bold;
+        font-style: italic;
+    }
+    .seatstack__results {
+        display: block;
+    }
+
+    .seatstack__bar {
+        padding: 0;
+        list-style-type: none;
+        height: $seatstack-height;
+        margin-bottom: $seatstack-top;
+        margin-top: 35px;
+        margin-left: 0 ;
+
+        @include mq($until: $seatstack-bp) {
+            margin-top: 0;
+        }
+
+        li {
+            float: none;
+            height: 50%;
+            margin-bottom: 20px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            clear: both;
+            height: 30px;
+        }
+
+        .seatstack-party-bar {
+            height: $seatstack-height;
+            width: 75%;
+
+            background-color: #eaeaea;
+            margin: 10px 0;
+            display: block;
+            float: left;
+            .seatstack-party-bar-inner {
+                height: 100%;
+                display: block;
+                float: left;
+            }
+        }
+
+        .seatstack-party-seats {
+            top: 50%;
+            position: relative;
+            transform: translateY(-50%);
+            font-family: $agate;
+            font-size: 12px;
+            width: auto;
+            display: block;
+            font-weight: normal;
+            float: left;
+            margin-left: 20px;
+            @include mq($until: $seatstack-bp) {
+                margin-left: 10px;
+            }
+        }
+
+        .seatstack-party-name {
+            text-align: right;
+            width: 25%;
+            position: relative;
+            float: left;
+            display: block;
+            height: 100%;
+            vertical-align: middle;
+            line-height: $seatstack-height + 20;
+
+            h4 {
+                font-size: 14px;
+                position: relative;
+                margin-right: 60px;
+                font-weight: 600;
+                vertical-align: middle;
+
+            }
+            .sprite {
+                position: absolute;
+                right: 0;
+                top: 0;
+                display: block;
+                width:60px;
+                height:50px;
+                background-position: right bottom;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            #turnbull {
+                background-image: url(@@assetPath@@/turnbull-shoulders-neutral.gif);
+
+                &.happy {
+                    background-image: url(@@assetPath@@/turnbull-shoulders-happy.gif)
+                }
+                &.sad {
+                    background-image: url(@@assetPath@@/turnbull-shoulders-sad.gif)
+                }
+            }
+            #shorten {
+                background-image: url(@@assetPath@@/shorten-shoulders-neutral.gif);
+                &.happy {
+                    background-image: url(@@assetPath@@/shorten-shoulders-happy.gif)                
+                }
+                &.sad {
+                    background-image: url(@@assetPath@@/shorten-shoulders-sad.gif)                
+                }
+            }
+
+            @include mq($until: desktop) {
+                h4 {
+                    margin-right: 0;
+                    position: absolute;
+                    bottom: -25px;
+                    line-height: 12px;
+                    text-align: center;
+                    font-size: 12px;
+                    width: 100%;
+                }
+
+                .sprite {
+                    height: 40px;
+                }
+            }
+        }
+    }
+
+    .seatstack-list {
+        width: calc(50% - 5px);
+        list-style-type: none;
+        margin: 0;
+        padding: 20px 0 0;
+        font-size: 12px;
+        float: left;
+        font-family: $agate;
+/*
+        span {
+            display: inline-block;
+        }*/
+
+        &.seatstack-list--2 {
+            float: right;
+        }
+        @include mq($until: $seatstack-bp) {
+            font-size: 12px;
+            padding-top: 10px;
+        }
+        @include mq($seatstack-bp) {
+            width: calc(50% - 10px);
+        }
+        @include mq(desktop) {
+            width: calc(50% - 20px);
+        }
+    }
+    .seatstack-list__item {
+        vertical-align: middle;
+        height: 24px;
+        line-height: 24px;
+        overflow: hidden;
+        border-bottom: 1px solid #bdbdbd;
+        transition: background-color 50ms;
+        &.is-header,
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        @include mq($until: $seatstack-bp) {
+            &.is-header {
+                height: 10px;
+                line-height: 10px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .seatstack-list__partybox {
+      width: 8px;
+      height: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
+    .seatstack-list__party-short-name {
+        display: none;
+        margin-left: 12px;
+
+        @include mq($until: $seatstack-bp) {
+            display: inline;
+            margin-left: 6px;   
+        }
+    }
+    .seatstack-list__party-name {
+        margin-left: 12px;
+        @include mq($until: $seatstack-bp) {
+            margin-left: 6px;
+            display: none;
+        }
+    }
+
+    .seatstack-list__seats {
+        float: right;
+        font-weight: bold;
+    }
+}
