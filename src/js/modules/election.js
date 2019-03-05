@@ -15,7 +15,7 @@ export class Electron {
 
     this.created = false
 
-    this.api = "https://interactive.guim.co.uk/docsdata/1efGTW-zJnaxdvAUPQFU7I39TnfO9e6itzqMiyKV3_JU.json" ;
+    this.api = "https://interactive.guim.co.uk/docsdata/1W7jwsI9Pzu1LvCYyb9MW4JD3DuTsNWekKueNElMSJ-c.json" ;
 
     this.isApp = (!!navigator.platform.match(/iPhone|iPod|iPad/) && window.location.origin === "file://" || !!navigator.platform.match(/iPhone|iPod|iPad/) && window.location.origin === 'null') ? true : false;
 
@@ -24,10 +24,10 @@ export class Electron {
       ticker: false,
       latest: [],
       isApp: self.isApp,
-      TOTAL_SEATS: 88,
-      MAJORITY_SEATS: 45,
+      TOTAL_SEATS: 93,
+      MAJORITY_SEATS: 47,
       partyData: [],
-      resultCount: 88,
+      resultCount: 93,
       partyListLeft: [],
       partyListRight: [],
       electionSelection: function(num) {

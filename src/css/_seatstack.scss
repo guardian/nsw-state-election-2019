@@ -468,6 +468,12 @@ $seatstack-list-lineheight: 24px;
                 right: auto;
                 right: 0;
             }
+
+            &[data-partyname='sff'] span {
+                right: auto;
+                right: 0;
+            }
+
         }
     }
     .seatstack-list__partybox[data-partyname='pup'] {
